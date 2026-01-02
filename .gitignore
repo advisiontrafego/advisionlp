@@ -1,0 +1,83 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+/dist
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+logs/
+
+# Environment Variables
+.env*
+!.env.example
+.envrc
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Todas as pastas com ponto no início
+.*/
+!.amazonq/
+!.github/
+
+# Arquivos Markdown (exceto README.md)
+*.md
+!README.md
+!Briefing.md
+
+# Arquivos Sensíveis
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.pem
+*.p8
+*.mobileprovision
+*.jks
+*.keystore
+
+# Sistema Operacional
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs e Editores (redundante com .*/)
+*.swp
+*.swo
+*~
+
+# Vercel
+.vercel
+
+# Temporários
+*.tmp
+*.temp
+.cache/
