@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { LogoFull } from "@/components/logos/LogoFull";
 import { Logo } from "@/components/logos/Logo";
-import { Instagram,  Mail } from "lucide-react";
+import { Instagram} from "lucide-react";
 import Link from "next/link";
 import { WHATSAPP_URL } from "@/lib/constants";
 import { useFramerScroll } from "@/hooks/use-framer-scroll";
@@ -16,11 +16,6 @@ export function AdvisionFooter() {
       icon: <Instagram className="h-5 w-5" />,
       href: "https://instagram.com/advisionbr",
       label: "Instagram",
-    },
-    {
-      icon: <Mail className="h-5 w-5" />,
-      href: "mailto:contato@advision.com.br",
-      label: "Email",
     },
   ];
 
@@ -114,9 +109,15 @@ export function AdvisionFooter() {
               ))}
             </ul>
           </div>
-          <div className="mt-6 text-sm leading-6 text-muted-foreground whitespace-nowrap lg:mt-0 lg:row-[1/3] lg:col-[1/4]">
+          <div className="mt-6 text-sm leading-6 text-muted-foreground lg:mt-0 lg:row-[1/3] lg:col-[1/4]">
             <div>© {new Date().getFullYear()} Advision</div>
-            <div>Tráfego estratégico e crescimento previsível</div>
+            <div className="font-semibold text-foreground mt-2">Agência de Tráfego Pago em Pouso Alegre</div>
+            <div className="mt-2 space-y-1">
+              <div>Tráfego Pago Pouso Alegre</div>
+              <div>Google Ads | Meta Ads | TikTok Ads</div>
+              <div>Gestão de Tráfego Pago</div>
+              <div>Marketing Digital Pouso Alegre</div>
+            </div>
           </div>
         </div>
       </div>

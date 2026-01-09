@@ -6,27 +6,27 @@ const INTRO_STYLE_ID = "faq1-animations";
 
 const faqs = [
   {
-    question: "Como funciona o investimento mínimo?",
+    question: "Como funciona o investimento mínimo em Anúncios?",
     answer:
-      "Trabalhamos com investimento mínimo de R$3.000/mês em mídia paga. Esse valor garante volume suficiente para testar, otimizar e gerar dados reais que orientam decisões estratégicas.",
+      "Trabalhamos com investimento mínimo de R$1.500/mês em mídia paga. Esse valor garante volume suficiente para testar, otimizar e gerar dados reais que orientam decisões estratégicas.",
     meta: "Investimento",
   },
   {
     question: "Vocês garantem resultados?",
     answer:
-      "Não prometemos fórmulas mágicas. Crescimento vem de método, dados e parceria. Trabalhamos com transparência total: você acompanha métricas, testes e otimizações em tempo real.",
+      "Não prometemos fórmulas mágicas. Crescimento vem de método, estratégia e parceria. Trabalhamos com transparência total: você acompanha métricas, testes e otimizações em tempo real. Vamos encontrar os gargalos e resolvê-los e escalar.",
     meta: "Resultados",
   },
   {
     question: "O que diferencia a Advision de outras agências?",
     answer:
-      "Vamos além dos anúncios. Analisamos o funil completo: tráfego, landing page, atendimento e conversão. Decisões baseadas em dados reais, não em achismo. Sem promessas vazias, só método.",
+      "Vamos além dos anúncios. Analisamos o funil completo: tráfego, landing page, atendimento e conversão. Sem promessas vazias, colcoamos o método à frente de tudo.",
     meta: "Diferenciais",
   },
   {
     question: "Quanto tempo leva para ver resultados?",
     answer:
-      "Os primeiros dados surgem em 7-15 dias. Otimizações consistentes acontecem entre 30-60 dias. Crescimento escalável é construído com método, teste e ajustes contínuos baseados em performance real.",
+      "Os primeiros dados surgem em 7-15 dias. Otimizações consistentes acontecem entre 30-45 dias. Crescimento escalável é construído com método, teste e ajustes contínuos, sempre buscando o melhor resultado.",
     meta: "Prazo",
   },
 ];

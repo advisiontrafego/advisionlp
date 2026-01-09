@@ -9,6 +9,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
       clipRule: "evenodd",
       strokeLinejoin: "round",
       strokeMiterlimit: 2,
+      transform: "scale(0.7)",
     }}
     viewBox="0 0 2359 2171"
     {...props}

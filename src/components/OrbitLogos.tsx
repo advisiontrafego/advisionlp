@@ -119,7 +119,7 @@ const getSkillsConfig = (scale: number): SkillConfig[] => [
     iconType: "escalabilidade",
     phaseShift: 0,
     glowColor: "purple",
-    label: "Escalabilidade",
+    label: "Growth Marketing",
   },
   {
     id: "organico",
@@ -129,7 +129,7 @@ const getSkillsConfig = (scale: number): SkillConfig[] => [
     iconType: "organico",
     phaseShift: Math.PI,
     glowColor: "purple",
-    label: "Tráfego Orgânico",
+    label: "Tráfego Pago",
   },
 ];
 

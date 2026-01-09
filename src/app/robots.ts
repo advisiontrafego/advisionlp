@@ -1,20 +1,24 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/static/'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "Googlebot-Image",
+        allow: "/",
       },
     ],
-    sitemap: 'https://advisionagencia.com.br/sitemap.xml',
-    host: 'https://advisionagencia.com.br',
-  }
+    sitemap: "https://advisionagencia.com.br/sitemap.xml",
+    host: "https://advisionagencia.com.br",
+  };
 }

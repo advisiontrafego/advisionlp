@@ -74,8 +74,8 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
     
     // Escala baseada no tamanho da tela
     const baseScale = logos[currentIndex].scale || 1
-    const scaleMap = { xs: 0.6, sm: 0.75, md: 1.0, lg: baseScale }
-    const finalScale = Math.min(scaleMap[screenSize], baseScale)
+    const scaleMap = { xs: 0.6, sm: 0.75, md: 0.85, lg: 1.0 }
+    const finalScale = baseScale * scaleMap[screenSize]
 
     return (
       <m.div

@@ -5,7 +5,7 @@ import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { Metrics } from "@/components/sections/Metrics";
 import { Testimonials } from "@/components/sections/Testimonials";
 import CTAWithHorizontalMarquee from "@/components/sections/Cta";
-import FAQ1 from "@/components/faq-monocrhome";
+import FAQ1 from "@/components/sections/FAQ1";
 import { AdvisionFooter } from "@/components/sections/AdvisionFooter";
 
 export default function Home() {

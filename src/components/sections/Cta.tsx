@@ -141,15 +141,7 @@ export default function CTAWithHorizontalMarquee() {
                   <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" aria-hidden="true"></div>
                 </button>
               </Link>
-              <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <button 
-                  className="w-full sm:min-w-[280px] group relative px-8 py-6 min-h-[60px] bg-transparent text-foreground rounded-md font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 border-border hover:border-electric-500 touch-manipulation"
-                  aria-label="Agendar diagnóstico via WhatsApp"
-                >
-                  <span className="relative z-10">AGENDAR DIAGNÓSTICO</span>
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-electric-500/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" aria-hidden="true"></div>
-                </button>
-              </Link>
+
             </div>
           </div>
 

@@ -8,6 +8,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
       fillRule: "evenodd",
       clipRule: "evenodd",
       strokeLinecap: "round",
+      transform: "scale(0.8)",
     }}
     viewBox="0 0 3167 3980"
     className="text-neutral-900 dark:text-white"

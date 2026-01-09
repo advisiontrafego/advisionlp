@@ -14,12 +14,12 @@ const steps = [
   {
     number: "02",
     title: "Inteligência de Dados",
-    description: "Nossa tecnologia proprietária cruza dados de campanha, site e vendas para entender não só quem clica, mas quem converte.",
+    description: "Separamos todas as métricas de campanha, site e vendas para entender não só quem clica, mas quem converte.",
   },
   {
     number: "03",
     title: "Escala Previsível",
-    description: "Com o funil validado, escalamos o investimento mantendo o ROI saudável. Transformamos dados em crescimento real.",
+    description: "Com o funil validado, escalamos o investimento mantendo o ROI saudável. Transformamos números em crescimento real.",
   },
 ];
 

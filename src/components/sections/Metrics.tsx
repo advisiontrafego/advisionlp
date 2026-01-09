@@ -22,7 +22,7 @@ const metrics = [
   {
     icon: Megaphone,
     value: 100,
-    suffix: "k+",
+    suffix: "K+",
     prefix: "R$ ",
     label: "Gerenciados em Ads",
     description: "Orçamento otimizado para máxima performance.",

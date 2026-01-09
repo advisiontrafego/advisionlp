@@ -31,7 +31,7 @@ const services = [
   {
     icon: LineChart,
     title: 'Rastreamento Avançado',
-    subtitle: 'Menos achismo. Mais dados.',
+    subtitle: 'Tome decisões com Inteligência.',
     description: (
       <>
         Sabemos de onde vem <strong>cada lead</strong> e <strong>cada venda</strong>. Relatórios que <strong>fazem sentido</strong>.
@@ -40,7 +40,7 @@ const services = [
     points: [
       'Pixel e conversões configurados corretamente',
       'Atribuição clara por canal e origem',
-      'Rastreamento até WhatsApp e qualificação de leads',
+      'Rastreamento no WhatsApp e qualificação dos leads',
     ],
   },
   {
@@ -64,7 +64,7 @@ const services = [
     subtitle: 'Decisões melhores, resultados melhores',
     description: (
       <>
-        Ajustamos com base em <strong>dados</strong>, não em achismo. <strong>Análise constante</strong> para <strong>escalar com controle</strong>.
+        Ajustamos com base em <strong>dados</strong>. <strong>Análise constante</strong> para <strong>escalar com controle</strong>.
       </>
     ),
     points: [
@@ -181,7 +181,7 @@ export function Services() {
           className="text-center"
         >
           <p className="text-xl md:text-2xl font-bold text-foreground mb-6 max-w-2xl mx-auto">
-            Quer crescer com previsibilidade e decisões baseadas em dados?
+            Quer crescer com Inteligência e previsibilidade?
           </p>
           <div className="flex justify-center">
             <Link

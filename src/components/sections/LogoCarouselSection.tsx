@@ -20,7 +20,7 @@ const allLogos = [
   { name: 'Marina', id: 5, img: LogoMarina },
   { name: 'Moreno', id: 6, img: LogoMoreno },
   { name: 'ThaTha', id: 7, img: LogoThaTha },
-  { name: 'VLT ADV', id: 8, img: LogoVltAdv },
+  { name: 'VLT ADV', id: 8, img: LogoVltAdv, scale: 0.8 },
   { name: 'VLT IMV', id: 9, img: LogoVltImv },
 ];
 
