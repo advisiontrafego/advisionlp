@@ -109,16 +109,6 @@ export function AdvisionFooter() {
               ))}
             </ul>
           </div>
-          <div className="mt-6 text-sm leading-6 text-muted-foreground lg:mt-0 lg:row-[1/3] lg:col-[1/4]">
-            <div>© {new Date().getFullYear()} Advision</div>
-            <div className="font-semibold text-foreground mt-2">Agência de Tráfego Pago em Pouso Alegre</div>
-            <div className="mt-2 space-y-1">
-              <div>Tráfego Pago Pouso Alegre</div>
-              <div>Google Ads | Meta Ads | TikTok Ads</div>
-              <div>Gestão de Tráfego Pago</div>
-              <div>Marketing Digital Pouso Alegre</div>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

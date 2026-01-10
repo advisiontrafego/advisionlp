@@ -14,13 +14,13 @@ const faqs = [
   {
     question: "Vocês garantem resultados?",
     answer:
-      "Não prometemos fórmulas mágicas. Crescimento vem de método, estratégia e parceria. Trabalhamos com transparência total: você acompanha métricas, testes e otimizações em tempo real. Vamos encontrar os gargalos e resolvê-los e escalar.",
+      "Não prometemos fórmulas mágicas. Crescimento vem de método, estratégia e parceria. Trabalhamos com transparência total: você acompanha métricas, testes e otimizações em tempo real. Vamos encontrar os gargalos, resolvê-los e escalar.",
     meta: "Resultados",
   },
   {
     question: "O que diferencia a Advision de outras agências?",
     answer:
-      "Vamos além dos anúncios. Analisamos o funil completo: tráfego, landing page, atendimento e conversão. Sem promessas vazias, colcoamos o método à frente de tudo.",
+      "Vamos além dos anúncios. Analisamos o funil completo: tráfego, landing page, atendimento e conversão. Sem promessas vazias, colocamos o método à frente de tudo.",
     meta: "Diferenciais",
   },
   {
