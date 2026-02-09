@@ -6,6 +6,7 @@ import { LazyWhatsAppWidget } from "@/components/LazyWhatsAppWidget";
 import { SkipLink } from "@/components/SkipLink";
 import { MotionProvider } from "@/components/MotionProvider";
 import { CookieBanner } from "@/components/CookieBanner";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -449,6 +450,7 @@ export default function RootLayout({
             <CookieBanner />
           </MotionProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

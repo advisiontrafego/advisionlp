@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, {
   useCallback,
@@ -6,76 +6,82 @@ import React, {
   useMemo,
   useState,
   type SVGProps,
-} from "react"
-import { AnimatePresence, m } from "motion/react"
+} from "react";
+import { AnimatePresence, m } from "motion/react";
 
 interface Logo {
-  name: string
-  id: number
-  img: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  scale?: number
+  name: string;
+  id: number;
+  img: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  scale?: number;
 }
 
 interface LogoColumnProps {
-  logos: Logo[]
-  index: number
-  currentTime: number
+  logos: Logo[];
+  index: number;
+  currentTime: number;
 }
 
 const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array]
+  const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  return shuffled
-}
+  return shuffled;
+};
 
 const distributeLogos = (allLogos: Logo[], columnCount: number): Logo[][] => {
-  const shuffled = shuffleArray(allLogos)
-  const columns: Logo[][] = Array.from({ length: columnCount }, () => [])
+  const shuffled = shuffleArray(allLogos);
+  const columns: Logo[][] = Array.from({ length: columnCount }, () => []);
 
   shuffled.forEach((logo, index) => {
-    columns[index % columnCount].push(logo)
-  })
+    columns[index % columnCount].push(logo);
+  });
 
-  const maxLength = Math.max(...columns.map((col) => col.length))
+  const maxLength = Math.max(...columns.map((col) => col.length));
   columns.forEach((col) => {
     while (col.length < maxLength) {
-      col.push(shuffled[Math.floor(Math.random() * shuffled.length)])
+      col.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
     }
-  })
+  });
 
-  return columns
-}
+  return columns;
+};
 
 const LogoColumn: React.FC<LogoColumnProps> = React.memo(
   ({ logos, index, currentTime }) => {
-    const [screenSize, setScreenSize] = useState<'xs' | 'sm' | 'md' | 'lg'>('lg')
-    
+    const [screenSize, setScreenSize] = useState<"xs" | "sm" | "md" | "lg">(
+      "lg",
+    );
+
     useEffect(() => {
       const checkSize = () => {
-        const w = window.innerWidth
-        if (w < 400) setScreenSize('xs')
-        else if (w < 640) setScreenSize('sm')
-        else if (w < 1024) setScreenSize('md')
-        else setScreenSize('lg')
-      }
-      checkSize()
-      window.addEventListener('resize', checkSize)
-      return () => window.removeEventListener('resize', checkSize)
-    }, [])
-    
-    const cycleInterval = 2000
-    const columnDelay = index * 200
-    const adjustedTime = (currentTime + columnDelay) % (cycleInterval * logos.length)
-    const currentIndex = Math.floor(adjustedTime / cycleInterval)
-    const CurrentLogo = useMemo(() => logos[currentIndex].img, [logos, currentIndex])
-    
+        const w = window.innerWidth;
+        if (w < 400) setScreenSize("xs");
+        else if (w < 640) setScreenSize("sm");
+        else if (w < 1024) setScreenSize("md");
+        else setScreenSize("lg");
+      };
+      checkSize();
+      window.addEventListener("resize", checkSize);
+      return () => window.removeEventListener("resize", checkSize);
+    }, []);
+
+    const cycleInterval = 2000;
+    const columnDelay = index * 200;
+    const adjustedTime =
+      (currentTime + columnDelay) % (cycleInterval * logos.length);
+    const currentIndex = Math.floor(adjustedTime / cycleInterval);
+    const CurrentLogo = useMemo(
+      () => logos[currentIndex].img,
+      [logos, currentIndex],
+    );
+
     // Escala baseada no tamanho da tela
-    const baseScale = logos[currentIndex].scale || 1
-    const scaleMap = { xs: 0.6, sm: 0.75, md: 0.85, lg: 1.0 }
-    const finalScale = baseScale * scaleMap[screenSize]
+    const baseScale = logos[currentIndex].scale || 1;
+    const scaleMap = { xs: 0.6, sm: 0.75, md: 0.85, lg: 1.0 };
+    const finalScale = baseScale * scaleMap[screenSize];
 
     return (
       <m.div
@@ -117,39 +123,39 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
               },
             }}
           >
-            <CurrentLogo 
-              className="max-h-full max-w-full object-contain fill-current text-foreground" 
+            <CurrentLogo
+              className="max-h-full max-w-full object-contain fill-current text-foreground"
               style={{ transform: `scale(${finalScale})` }}
             />
           </m.div>
         </AnimatePresence>
       </m.div>
-    )
-  }
-)
+    );
+  },
+);
 
 interface LogoCarouselProps {
-  columnCount?: number
-  logos: Logo[]
+  columnCount?: number;
+  logos: Logo[];
 }
 
 export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
-  const [logoSets, setLogoSets] = useState<Logo[][]>([])
-  const [currentTime, setCurrentTime] = useState(0)
+  const [logoSets, setLogoSets] = useState<Logo[][]>([]);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const updateTime = useCallback(() => {
-    setCurrentTime((prevTime) => prevTime + 100)
-  }, [])
+    setCurrentTime((prevTime) => prevTime + 2000);
+  }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(updateTime, 100)
-    return () => clearInterval(intervalId)
-  }, [updateTime])
+    const intervalId = setInterval(updateTime, 2000);
+    return () => clearInterval(intervalId);
+  }, [updateTime]);
 
   useEffect(() => {
-    const distributedLogos = distributeLogos(logos, columnCount)
-    setLogoSets(distributedLogos)
-  }, [logos, columnCount])
+    const distributedLogos = distributeLogos(logos, columnCount);
+    setLogoSets(distributedLogos);
+  }, [logos, columnCount]);
 
   return (
     <div className="flex gap-1 sm:gap-2 md:gap-4">
@@ -162,7 +168,7 @@ export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
         />
       ))}
     </div>
-  )
+  );
 }
 
 export { LogoColumn };

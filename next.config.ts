@@ -16,7 +16,9 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
 
-  turbopack: {},
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;
