@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Termos de Uso",
   description: "Termos de Uso da Advision - Agência de Tráfego Pago em Pouso Alegre. Conheça as regras e condições para utilização de nossos serviços.",
+  alternates: {
+    canonical: "https://advisionagencia.com.br/termos",
+  },
 };
 
 export default function TermosPage() {
