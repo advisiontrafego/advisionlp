@@ -1,5 +1,12 @@
 "use client";
-import React, { useEffect, useState, memo, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  memo,
+  useMemo,
+} from "react";
 import { Logo } from "@/components/logos/Logo";
 import { useTheme } from "next-themes";
 import { TrendingUp, Globe } from "lucide-react";
@@ -7,8 +14,12 @@ import LogoGoogleAds from "@/components/logos/LogoGoogleAds";
 import LogoMetaAds from "@/components/logos/Logometaads";
 import LogoTikTok from "@/components/logos/LogoTikTok";
 
-
-type IconType = "metaads" | "googleads" | "tiktok" | "escalabilidade" | "organico";
+type IconType =
+  | "metaads"
+  | "googleads"
+  | "tiktok"
+  | "escalabilidade"
+  | "organico";
 
 type GlowColor = "cyan" | "purple";
 
@@ -27,17 +38,14 @@ interface SkillConfig {
   label: string;
 }
 
-interface OrbitingSkillProps {
-  config: SkillConfig;
-  angle: number;
-}
-
 interface GlowingOrbitPathProps {
   radius: number;
   glowColor?: GlowColor;
   animationDelay?: number;
 }
 
+/** Cap máximo de deltaTime para evitar saltos bruscos (ex: tab switch, notificação) */
+const MAX_DELTA = 0.05; // ~20fps mínimo
 
 const iconComponents: Record<
   IconType,
@@ -72,7 +80,6 @@ const iconComponents: Record<
     color: "#1830E7",
   },
 };
-
 
 const SkillIcon = memo(({ type }: SkillIconProps) => {
   const IconComponent = iconComponents[type]?.component;
@@ -133,49 +140,50 @@ const getSkillsConfig = (scale: number): SkillConfig[] => [
   },
 ];
 
+/** Componente individual de ícone orbitante — renderizado 1x, atualizado via ref */
+const OrbitingSkill = memo(
+  React.forwardRef<HTMLDivElement, { config: SkillConfig }>(
+    ({ config }, ref) => {
+      const [isHovered, setIsHovered] = useState(false);
+      const { size, iconType, label } = config;
 
-const OrbitingSkill = memo(({ config, angle }: OrbitingSkillProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const { orbitRadius, size, iconType, label } = config;
-
-  const x = Math.cos(angle) * orbitRadius;
-  const y = Math.sin(angle) * orbitRadius;
-
-  return (
-    <div
-      className="absolute top-1/2 left-1/2 transition-all duration-300 ease-out"
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
-        zIndex: isHovered ? 20 : 10,
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div
-        className={`
-          relative w-full h-full p-2 backdrop-blur-sm
-          rounded-full flex items-center justify-center
-          transition-all duration-300 cursor-pointer
-          ${isHovered ? "scale-125 shadow-2xl" : "shadow-lg hover:shadow-xl"}
-        `}
-        style={{
-          boxShadow: isHovered
-            ? `0 0 30px ${iconComponents[iconType]?.color}40, 0 0 60px ${iconComponents[iconType]?.color}20`
-            : undefined,
-        }}
-      >
-        <SkillIcon type={iconType} />
-        {isHovered && (
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900/95 backdrop-blur-sm rounded text-xs text-white whitespace-nowrap pointer-events-none">
-            {label}
+      return (
+        <div
+          ref={ref}
+          className="absolute top-1/2 left-1/2 will-change-transform"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            zIndex: isHovered ? 20 : 10,
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div
+            className={`
+            relative w-full h-full p-2 backdrop-blur-sm
+            rounded-full flex items-center justify-center
+            transition-[transform,box-shadow] duration-300 cursor-pointer
+            ${isHovered ? "scale-125 shadow-2xl" : "shadow-lg hover:shadow-xl"}
+          `}
+            style={{
+              boxShadow: isHovered
+                ? `0 0 30px ${iconComponents[iconType]?.color}40, 0 0 60px ${iconComponents[iconType]?.color}20`
+                : undefined,
+            }}
+          >
+            <SkillIcon type={iconType} />
+            {isHovered && (
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900/95 backdrop-blur-sm rounded text-xs text-white whitespace-nowrap pointer-events-none">
+                {label}
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
-  );
-});
+        </div>
+      );
+    },
+  ),
+);
 OrbitingSkill.displayName = "OrbitingSkill";
 
 const GlowingOrbitPath = memo(
@@ -249,44 +257,72 @@ const GlowingOrbitPath = memo(
         />
       </div>
     );
-  }
+  },
 );
 GlowingOrbitPath.displayName = "GlowingOrbitPath";
 
-
 export default function OrtbitLogos() {
-  const [time, setTime] = useState(0);
   const [scale, setScale] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timeRef = useRef(0);
 
+  // Refs para cada ícone orbitante — manipulação direta do DOM, sem re-render
+  const skillRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const skillsConfig = useMemo(() => getSkillsConfig(scale), [scale]);
+
+  // Callback refs estáveis para os ícones
+  const setSkillRef = useCallback(
+    (index: number) => (el: HTMLDivElement | null) => {
+      skillRefs.current[index] = el;
+    },
+    [],
+  );
+
+  // Fix 2: ResizeObserver no container em vez de window.resize
+  // Evita falsos-positivos da barra de endereço do iOS
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const updateScale = () => {
-      const width = window.innerWidth;
-      if (width < 480) setScale(0.75);
-      else if (width < 640) setScale(0.9);
-      else if (width < 768) setScale(1.05);
-      else if (width < 1024) setScale(0.85);
+      const width = container.clientWidth;
+      // Mapeamos a largura do container para o scale equivalente
+      if (width < 360) setScale(0.75);
+      else if (width < 450) setScale(0.9);
+      else if (width < 520) setScale(1.05);
+      else if (width < 580) setScale(0.85);
       else setScale(1);
     };
+
+    const observer = new ResizeObserver(() => {
+      updateScale();
+    });
+
     updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
+  // IntersectionObserver para pausar animação quando fora da tela
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    const element = document.getElementById('orbit-logos-container');
-    if (element) observer.observe(element);
-
+    observer.observe(container);
     return () => observer.disconnect();
   }, []);
 
+  // Fix 1 + Fix 3: Loop de animação via ref + manipulação direta do DOM
+  // Zero re-renders do React — atualiza transform diretamente nos elementos
   useEffect(() => {
     if (!isVisible) return;
 
@@ -294,30 +330,46 @@ export default function OrtbitLogos() {
     let lastTime = performance.now();
 
     const animate = (currentTime: number) => {
-      const deltaTime = (currentTime - lastTime) / 1000;
+      const rawDelta = (currentTime - lastTime) / 1000;
+      // Fix 3: Cap do deltaTime para evitar saltos bruscos
+      const deltaTime = Math.min(rawDelta, MAX_DELTA);
       lastTime = currentTime;
 
-      setTime((prevTime) => prevTime + deltaTime);
+      timeRef.current += deltaTime;
+      const t = timeRef.current;
+
+      // Atualiza posição de cada ícone diretamente no DOM (sem setState)
+      skillsConfig.forEach((config, i) => {
+        const el = skillRefs.current[i];
+        if (!el) return;
+        const angle = t * config.speed + (config.phaseShift || 0);
+        const x = Math.cos(angle) * config.orbitRadius;
+        const y = Math.sin(angle) * config.orbitRadius;
+        el.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+      });
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isVisible]);
+  }, [isVisible, skillsConfig]);
 
-  const orbitConfigs = useMemo(() => [
-    { radius: 120 * scale, glowColor: "cyan" as GlowColor, delay: 0 },
-    { radius: 210 * scale, glowColor: "purple" as GlowColor, delay: 1.5 },
-  ], [scale]);
-
-  const skillsConfig = useMemo(() => getSkillsConfig(scale), [scale]);
+  const orbitConfigs = useMemo(
+    () => [
+      { radius: 120 * scale, glowColor: "cyan" as GlowColor, delay: 0 },
+      { radius: 210 * scale, glowColor: "purple" as GlowColor, delay: 1.5 },
+    ],
+    [scale],
+  );
 
   return (
-    <main id="orbit-logos-container" className="w-full flex items-center justify-center">
+    <main
+      ref={containerRef}
+      className="w-full flex items-center justify-center"
+    >
       <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] aspect-square flex items-center justify-center">
-
         <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-card border border-electric-100 dark:border-electric-500/50 rounded-full flex items-center justify-center z-10 relative shadow-2xl">
-          
           <div className="relative z-10">
             <Logo className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16" />
           </div>
@@ -332,13 +384,9 @@ export default function OrtbitLogos() {
           />
         ))}
 
-
-        {skillsConfig.map((config) => {
-          const angle = time * config.speed + (config.phaseShift || 0);
-          return (
-            <OrbitingSkill key={config.id} config={config} angle={angle} />
-          );
-        })}
+        {skillsConfig.map((config, i) => (
+          <OrbitingSkill key={config.id} ref={setSkillRef(i)} config={config} />
+        ))}
       </div>
     </main>
   );
