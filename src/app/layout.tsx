@@ -7,6 +7,7 @@ import { SkipLink } from "@/components/SkipLink";
 import { MotionProvider } from "@/components/MotionProvider";
 import { CookieBanner } from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -451,6 +452,7 @@ export default function RootLayout({
           </MotionProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
