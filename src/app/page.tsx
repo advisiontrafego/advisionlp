@@ -43,12 +43,24 @@ export default function Home() {
     <main id="main-content" role="main" aria-label="Conteúdo principal">
       <Hero />
       <Services />
-      <LogoCarouselSection />
-      <HowItWorksSection />
-      <Metrics />
-      <Testimonials />
-      <CTAWithHorizontalMarquee />
-      <FAQ1 />
+      <div className="cv-auto">
+        <LogoCarouselSection />
+      </div>
+      <div className="cv-auto">
+        <HowItWorksSection />
+      </div>
+      <div className="cv-auto">
+        <Metrics />
+      </div>
+      <div className="cv-auto">
+        <Testimonials />
+      </div>
+      <div className="cv-auto">
+        <CTAWithHorizontalMarquee />
+      </div>
+      <div className="cv-auto">
+        <FAQ1 />
+      </div>
       <AdvisionFooter />
     </main>
   );

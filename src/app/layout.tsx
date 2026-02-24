@@ -13,7 +13,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["600"],
-  display: "optional",
+  display: "swap",
   preload: true,
   fallback: ["system-ui", "sans-serif"],
   adjustFontFallback: true,

@@ -57,8 +57,12 @@
   --color-ring: var(--ring);
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
 }
 
@@ -113,49 +117,51 @@
   --grid-glow: rgba(52, 73, 234, 0.2);
 }
 
-
-
 /* Hero Grid */
 .hero-grid {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 30%, transparent 85%);
-  will-change: opacity;
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    black 30%,
+    transparent 85%
+  );
 }
 
 .hero-grid::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 65% at 50% 40%, var(--grid-glow), transparent);
+  background: radial-gradient(
+    ellipse 80% 65% at 50% 40%,
+    var(--grid-glow),
+    transparent
+  );
   pointer-events: none;
-  will-change: opacity;
 }
-
-
 
 @layer base {
   * {
     @apply border-border;
   }
-  
+
   *:focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
-  
+
   body {
     @apply bg-background text-foreground;
   }
-  
+
   strong {
     @apply font-bold text-primary dark:text-electric-400;
   }
-  
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -167,7 +173,7 @@
     white-space: nowrap;
     border-width: 0;
   }
-  
+
   .sr-only:focus {
     position: static;
     width: auto;
@@ -203,10 +209,249 @@
 }
 
 @keyframes database-animation-path {
-  0% { offset-distance: 0%; }
-  100% { offset-distance: 100%; }
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
 }
 
 .animate-marquee {
   animation: marquee var(--duration) linear infinite;
+}
+
+/* HowItWorks circles — composited CSS animation (transform only) */
+@keyframes hiw-circle-pulse {
+  0%,
+  40%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(0.98);
+  }
+  30% {
+    transform: scale(1.02);
+  }
+}
+
+.hiw-circle {
+  animation: hiw-circle-pulse 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Mobile: defer rendering of off-screen sections */
+@media (max-width: 768px) {
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+}
+
+/* ===== FAQ1 animations (moved from JS injection) ===== */
+@keyframes faq1-fade-up {
+  0% {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes faq1-beam-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes faq1-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.55;
+  }
+  60% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+@keyframes faq1-meter {
+  0%,
+  20% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  45%,
+  60% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  80%,
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+@keyframes faq1-tick {
+  0%,
+  30% {
+    transform: translateX(-6px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}
+.faq1-intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid rgba(52, 73, 234, 0.2);
+  background: rgba(12, 12, 12, 0.42);
+  color: rgba(52, 73, 234, 0.92);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.65rem;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 auto;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 720ms ease,
+    transform 720ms ease;
+  isolation: isolate;
+}
+.faq1-intro--light {
+  border-color: rgba(52, 73, 234, 0.2);
+  background: rgba(248, 250, 252, 0.88);
+  color: rgba(52, 73, 234, 0.78);
+  mix-blend-mode: multiply;
+}
+.faq1-intro--active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.faq1-intro__beam,
+.faq1-intro__pulse {
+  position: absolute;
+  inset: -110%;
+  pointer-events: none;
+  border-radius: 50%;
+}
+.faq1-intro__beam {
+  background: conic-gradient(
+    from 160deg,
+    rgba(52, 73, 234, 0.3),
+    transparent 32%,
+    rgba(52, 73, 234, 0.22) 58%,
+    transparent 78%,
+    rgba(52, 73, 234, 0.18)
+  );
+  opacity: 0.55;
+}
+@media (min-width: 768px) {
+  .faq1-intro__beam {
+    animation: faq1-beam-spin 18s linear infinite;
+  }
+}
+.faq1-intro__beam.paused {
+  animation-play-state: paused;
+}
+.faq1-intro--light .faq1-intro__beam {
+  background: conic-gradient(
+    from 180deg,
+    rgba(52, 73, 234, 0.2),
+    transparent 30%,
+    rgba(52, 73, 234, 0.18) 58%,
+    transparent 80%,
+    rgba(52, 73, 234, 0.14)
+  );
+}
+.faq1-intro__pulse {
+  border: 1px solid currentColor;
+  opacity: 0.25;
+}
+@media (min-width: 768px) {
+  .faq1-intro__pulse {
+    animation: faq1-pulse 3.4s ease-out infinite;
+  }
+}
+.faq1-intro__pulse.paused {
+  animation-play-state: paused;
+}
+.faq1-intro__label {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+}
+.faq1-intro__meter {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    currentColor 35%,
+    transparent 85%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.7;
+}
+@media (min-width: 768px) {
+  .faq1-intro__meter {
+    animation: faq1-meter 5.8s ease-in-out infinite;
+  }
+}
+.faq1-intro__meter.paused {
+  animation-play-state: paused;
+}
+.faq1-intro__tick {
+  position: relative;
+  z-index: 1;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 0 4px rgba(52, 73, 234, 0.15);
+}
+@media (min-width: 768px) {
+  .faq1-intro__tick {
+    animation: faq1-tick 3.2s ease-in-out infinite;
+  }
+}
+.faq1-intro__tick.paused {
+  animation-play-state: paused;
+}
+.faq1-intro--light .faq1-intro__tick {
+  box-shadow: 0 0 0 4px rgba(52, 73, 234, 0.1);
+}
+.faq1-fade {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+.faq1-fade--ready {
+  animation: faq1-fade-up 860ms cubic-bezier(0.22, 0.68, 0, 1) forwards;
 }

@@ -29,7 +29,7 @@ function HorizontalMarquee({
         className={cn(
           "flex shrink-0 gap-16 animate-marquee",
           reverse && "direction-[reverse]",
-          pauseOnHover && "group-hover:paused"
+          pauseOnHover && "group-hover:paused",
         )}
         style={{ animationDuration: `${speed}s` }}
       >
@@ -39,7 +39,7 @@ function HorizontalMarquee({
         className={cn(
           "flex shrink-0 gap-16 animate-marquee",
           reverse && "direction-[reverse]",
-          pauseOnHover && "group-hover:paused"
+          pauseOnHover && "group-hover:paused",
         )}
         style={{ animationDuration: `${speed}s` }}
         aria-hidden="true"
@@ -77,7 +77,7 @@ export default function CTAWithHorizontalMarquee() {
           rafId = requestAnimationFrame(updateOpacity);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(marqueeContainer);
@@ -85,7 +85,9 @@ export default function CTAWithHorizontalMarquee() {
     const updateOpacity = () => {
       if (!isVisible) return;
 
-      const items = marqueeContainer.querySelectorAll('.marquee-item-horizontal');
+      const items = marqueeContainer.querySelectorAll(
+        ".marquee-item-horizontal",
+      );
       const containerRect = marqueeContainer.getBoundingClientRect();
       const centerX = containerRect.left + containerRect.width / 2;
 
@@ -99,7 +101,10 @@ export default function CTAWithHorizontalMarquee() {
         (item as HTMLElement).style.opacity = opacity.toString();
       });
 
-      rafId = requestAnimationFrame(updateOpacity);
+      // Throttle to ~15fps instead of 60fps to reduce main thread work
+      setTimeout(() => {
+        rafId = requestAnimationFrame(updateOpacity);
+      }, 66);
     };
 
     return () => {
@@ -109,18 +114,27 @@ export default function CTAWithHorizontalMarquee() {
   }, []);
 
   return (
-    <section id="contact" className="relative w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background overflow-hidden" aria-labelledby="cta-title">
+    <section
+      id="contact"
+      className="relative w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background overflow-hidden"
+      aria-labelledby="cta-title"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-
           <div className="space-y-6 sm:space-y-8 max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-100 dark:bg-electric-900/30 border border-electric-200 dark:border-electric-800" aria-hidden="true">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-100 dark:bg-electric-900/30 border border-electric-200 dark:border-electric-800"
+              aria-hidden="true"
+            >
               <span className="text-xs font-bold text-electric-700 dark:text-electric-400 uppercase tracking-wide">
                 Comece Agora
               </span>
             </div>
 
-            <h2 id="cta-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground px-4">
+            <h2
+              id="cta-title"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground px-4"
+            >
               Pronto para crescer com{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-electric-600 to-electric-400 dark:from-electric-400 dark:to-electric-200">
                 método e estratégia?
@@ -128,25 +142,36 @@ export default function CTAWithHorizontalMarquee() {
             </h2>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-4">
-              Transforme tráfego em crescimento previsível. Agende uma conversa e descubra como podemos acelerar seus resultados.
+              Transforme tráfego em crescimento previsível. Agende uma conversa
+              e descubra como podemos acelerar seus resultados.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-10 justify-center pt-2 sm:pt-4 px-4">
-              <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <button 
+              <Link
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
+                <button
                   className="w-full sm:min-w-[280px] group relative px-8 py-6 min-h-[60px] bg-electric-500 text-white rounded-md font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-electric-600 touch-manipulation"
                   aria-label="Falar com especialista via WhatsApp"
                 >
                   <span className="relative z-10">FALAR COM ESPECIALISTA</span>
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" aria-hidden="true"></div>
+                  <div
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+                    aria-hidden="true"
+                  ></div>
                 </button>
               </Link>
-
             </div>
           </div>
 
-
-          <div ref={marqueeRef} className="relative w-full mt-4 sm:mt-6 md:mt-8" aria-hidden="true">
+          <div
+            ref={marqueeRef}
+            className="relative w-full mt-4 sm:mt-6 md:mt-8"
+            aria-hidden="true"
+          >
             <div className="relative py-4 sm:py-6">
               <HorizontalMarquee speed={30}>
                 {marqueeItems.map((item, idx) => (
@@ -158,17 +183,14 @@ export default function CTAWithHorizontalMarquee() {
                   </div>
                 ))}
               </HorizontalMarquee>
-              
 
               <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 md:w-56 lg:w-72 bg-linear-to-r from-background via-background/50 to-transparent z-10"></div>
-              
 
               <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 md:w-56 lg:w-72 bg-linear-to-l from-background via-background/50 to-transparent z-10"></div>
             </div>
           </div>
         </div>
       </div>
-      
 
       <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-b from-transparent to-background backdrop-blur-sm z-20" />
     </section>

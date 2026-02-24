@@ -1,19 +1,18 @@
 "use client";
 
 import React from "react";
-import { m } from "motion/react";
-import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+import {
+  SparklesIcon,
+  Globe,
+  Users,
+  TrendingUp,
+  BarChart3,
+} from "lucide-react";
 import LogoMetaAds from "../logos/Logometaads";
 import LogoGoogleAds from "../logos/LogoGoogleAds";
 import LogoTikTok from "../logos/LogoTikTok";
 import { Logo } from "../logos/Logo";
-
-const SparklesIcon = dynamic(() => import('lucide-react').then(mod => ({ default: mod.SparklesIcon })), { ssr: false });
-const Globe = dynamic(() => import('lucide-react').then(mod => ({ default: mod.Globe })), { ssr: false });
-const Users = dynamic(() => import('lucide-react').then(mod => ({ default: mod.Users })), { ssr: false });
-const TrendingUp = dynamic(() => import('lucide-react').then(mod => ({ default: mod.TrendingUp })), { ssr: false });
-const BarChart3 = dynamic(() => import('lucide-react').then(mod => ({ default: mod.BarChart3 })), { ssr: false });
 
 interface HowItWorksProps {
   className?: string;
@@ -43,7 +42,7 @@ const HowItWorks = ({
     <div
       className={cn(
         "relative flex h-[350px] w-full max-w-[500px] flex-col items-center",
-        className
+        className,
       )}
     >
       {/* SVG Paths  */}
@@ -117,41 +116,104 @@ const HowItWorks = ({
         <g>
           {/* Meta */}
           <g>
-            <circle cx="31" cy="8" r="8" fill="currentColor" className="text-card dark:text-navy-800" />
+            <circle
+              cx="31"
+              cy="8"
+              r="8"
+              fill="currentColor"
+              className="text-card dark:text-navy-800"
+            />
             <foreignObject x="26" y="3" width="10" height="10">
               <LogoMetaAds className="w-full h-full" />
             </foreignObject>
-            <text x="31" y="21" fill="currentColor" className="text-foreground dark:text-white" stroke="none" fontSize="4.5" fontWeight="500" textAnchor="middle">
+            <text
+              x="31"
+              y="21"
+              fill="currentColor"
+              className="text-foreground dark:text-white"
+              stroke="none"
+              fontSize="4.5"
+              fontWeight="500"
+              textAnchor="middle"
+            >
               Meta Ads
             </text>
           </g>
           {/* Google */}
           <g>
-            <circle cx="77" cy="8" r="8" fill="currentColor" className="text-card dark:text-navy-800" />
+            <circle
+              cx="77"
+              cy="8"
+              r="8"
+              fill="currentColor"
+              className="text-card dark:text-navy-800"
+            />
             <foreignObject x="72" y="3" width="10" height="10">
               <LogoGoogleAds className="w-full h-full" />
             </foreignObject>
-            <text x="77" y="21" fill="currentColor" className="text-foreground dark:text-white" stroke="none" fontSize="4.5" fontWeight="500" textAnchor="middle">
+            <text
+              x="77"
+              y="21"
+              fill="currentColor"
+              className="text-foreground dark:text-white"
+              stroke="none"
+              fontSize="4.5"
+              fontWeight="500"
+              textAnchor="middle"
+            >
               Google Ads
             </text>
           </g>
           {/* TikTok */}
           <g>
-            <circle cx="124" cy="8" r="8" fill="currentColor" className="text-card dark:text-navy-800" />
+            <circle
+              cx="124"
+              cy="8"
+              r="8"
+              fill="currentColor"
+              className="text-card dark:text-navy-800"
+            />
             <foreignObject x="119" y="3" width="10" height="10">
               <LogoTikTok className="w-full h-full" />
             </foreignObject>
-            <text x="124" y="21" fill="currentColor" className="text-foreground dark:text-white" stroke="none" fontSize="4.5" fontWeight="500" textAnchor="middle">
+            <text
+              x="124"
+              y="21"
+              fill="currentColor"
+              className="text-foreground dark:text-white"
+              stroke="none"
+              fontSize="4.5"
+              fontWeight="500"
+              textAnchor="middle"
+            >
               TikTok Ads
             </text>
           </g>
           {/* Site */}
           <g>
-            <circle cx="170" cy="8" r="8" fill="currentColor" className="text-card dark:text-navy-800" />
+            <circle
+              cx="170"
+              cy="8"
+              r="8"
+              fill="currentColor"
+              className="text-card dark:text-navy-800"
+            />
             <foreignObject x="165" y="3" width="10" height="10">
-              <Globe className="w-full h-full text-foreground dark:text-white" strokeWidth={2.5} />
+              <Globe
+                className="w-full h-full text-foreground dark:text-white"
+                strokeWidth={2.5}
+              />
             </foreignObject>
-            <text x="170" y="21" fill="currentColor" className="text-foreground dark:text-white" stroke="none" fontSize="4.5" fontWeight="500" textAnchor="middle">
+            <text
+              x="170"
+              y="21"
+              fill="currentColor"
+              className="text-foreground dark:text-white"
+              stroke="none"
+              fontSize="4.5"
+              fontWeight="500"
+              textAnchor="middle"
+            >
               Web
             </text>
           </g>
@@ -215,45 +277,45 @@ const HowItWorks = ({
         <div className="relative z-10 flex h-[150px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
           {/* Badges */}
           <div className="absolute bottom-10 left-4 z-10 h-8 rounded-full bg-card dark:bg-navy-800 px-3 text-xs border border-border flex items-center gap-2 shadow-md">
-            <Users className="w-4 h-4 text-electric-500 dark:text-electric-400" strokeWidth={2.5} />
-            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">Público</span>
+            <Users
+              className="w-4 h-4 text-electric-500 dark:text-electric-400"
+              strokeWidth={2.5}
+            />
+            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">
+              Público
+            </span>
           </div>
           <div className="absolute top-10 left-1/2 -translate-x-1/2 z-10 h-8 rounded-full bg-card dark:bg-navy-800 px-3 text-xs border border-border flex items-center gap-2 shadow-md">
-            <BarChart3 className="w-4 h-4 text-electric-500 dark:text-electric-400" strokeWidth={2.5} />
-            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">Dados</span>
+            <BarChart3
+              className="w-4 h-4 text-electric-500 dark:text-electric-400"
+              strokeWidth={2.5}
+            />
+            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">
+              Dados
+            </span>
           </div>
           <div className="absolute bottom-10 right-4 z-10 h-8 rounded-full bg-card dark:bg-navy-800 px-3 text-xs border border-border flex items-center gap-2 shadow-md">
-            <TrendingUp className="w-4 h-4 text-electric-500 dark:text-electric-400" strokeWidth={2.5} />
-            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">ROI</span>
+            <TrendingUp
+              className="w-4 h-4 text-electric-500 dark:text-electric-400"
+              strokeWidth={2.5}
+            />
+            <span className="text-foreground dark:text-white font-semibold hidden sm:inline">
+              ROI
+            </span>
           </div>
-          {/* Circles */}
-          <m.div
-            className="absolute -bottom-14 h-[100px] w-[100px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10"
-            animate={{
-              scale: [0.98, 1.02, 0.98, 1, 1, 1, 1, 1, 1],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
+          {/* Circles — CSS-only composited animations */}
+          <div className="absolute -bottom-14 h-[100px] w-[100px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10 hiw-circle" />
+          <div
+            className="absolute -bottom-20 h-[145px] w-[145px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10 hiw-circle"
+            style={{ animationDelay: "0.5s" }}
           />
-          <m.div
-            className="absolute -bottom-20 h-[145px] w-[145px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10"
-            animate={{
-              scale: [1, 1, 1, 0.98, 1.02, 0.98, 1, 1, 1],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <div
+            className="absolute -bottom-[100px] h-[190px] w-[190px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10 hiw-circle"
+            style={{ animationDelay: "1s" }}
           />
-          <m.div
-            className="absolute -bottom-[100px] h-[190px] w-[190px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10"
-            animate={{
-              scale: [1, 1, 1, 1, 1, 0.98, 1.02, 0.98, 1, 1],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <m.div
-            className="absolute -bottom-[120px] h-[235px] w-[235px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10"
-            animate={{
-              scale: [1, 1, 1, 1, 1, 1, 0.98, 1.02, 0.98, 1],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <div
+            className="absolute -bottom-[120px] h-[235px] w-[235px] rounded-full border-t border-border bg-electric-500/5 dark:bg-electric-500/10 hiw-circle"
+            style={{ animationDelay: "1.5s" }}
           />
         </div>
       </div>

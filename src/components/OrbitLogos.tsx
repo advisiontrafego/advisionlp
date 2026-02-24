@@ -208,11 +208,9 @@ const GlowingOrbitPath = memo(
         border: isDark ? "rgba(52, 73, 234, 0.3)" : "rgba(24, 48, 231, 0.3)",
       },
       purple: {
-        primary: isDark ? "rgba(196, 122, 44, 0.4)" : "rgba(52, 73, 234, 0.4)",
-        secondary: isDark
-          ? "rgba(196, 122, 44, 0.2)"
-          : "rgba(52, 73, 234, 0.2)",
-        border: isDark ? "rgba(196, 122, 44, 0.3)" : "rgba(52, 73, 234, 0.3)",
+        primary: isDark ? "rgba(52, 73, 234, 0.4)" : "rgba(52, 73, 234, 0.4)",
+        secondary: isDark ? "rgba(52, 73, 234, 0.2)" : "rgba(52, 73, 234, 0.2)",
+        border: isDark ? "rgba(52, 73, 234, 0.3)" : "rgba(52, 73, 234, 0.3)",
       },
     };
 
@@ -240,12 +238,10 @@ const GlowingOrbitPath = memo(
         }}
       >
         <div
-          className="absolute inset-0 rounded-full animate-pulse"
+          className="absolute inset-0 rounded-full opacity-60"
           style={{
-            background: `radial-linear(circle, transparent 30%, ${colors.secondary} 70%, ${colors.primary} 100%)`,
-            boxShadow: `0 0 60px ${colors.primary}, inset 0 0 60px ${colors.secondary}`,
-            animation: "pulse 4s ease-in-out infinite",
-            animationDelay: `${animationDelay}s`,
+            background: `radial-gradient(circle, transparent 30%, ${colors.secondary} 70%, ${colors.primary} 100%)`,
+            boxShadow: `0 0 40px ${colors.primary}, inset 0 0 40px ${colors.secondary}`,
           }}
         />
         <div

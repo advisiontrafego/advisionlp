@@ -98,11 +98,11 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
           <m.div
             key={`${logos[currentIndex].id}-${currentIndex}`}
             className="absolute inset-0 flex items-center justify-center p-2"
-            initial={{ y: "10%", opacity: 0, filter: "blur(8px)" }}
+            initial={{ y: "10%", opacity: 0, scale: 0.95 }}
             animate={{
               y: "0%",
               opacity: 1,
-              filter: "blur(0px)",
+              scale: 1,
               transition: {
                 type: "spring",
                 stiffness: 300,
@@ -115,7 +115,7 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
             exit={{
               y: "-20%",
               opacity: 0,
-              filter: "blur(6px)",
+              scale: 0.95,
               transition: {
                 type: "tween",
                 ease: "easeIn",
