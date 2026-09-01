@@ -24,7 +24,7 @@ export function WhatsAppWidget() {
       accountName="Advision"
       avatar={avatarSrc}
       statusMessage="Online"
-      chatMessage="Olá, Pronto para escalar suas vendas e aumentar seu faturamento? 🚀"
+      chatMessage="Olá, Pronto para escalar seu escritório com previsibilidade e aumentar seu faturamento? 🚀"
       placeholder="Digite sua mensagem..."
       messageDelay={1}
       darkMode={isDark}

@@ -54,7 +54,7 @@ const services = [
     points: [
       "Landing pages profissionais otimizadas",
       "Fluxo de WhatsApp estruturado",
-      "Alinhamento com equipe de vendas",
+      "Treinamento com equipe de vendas",
     ],
   },
   {
@@ -124,7 +124,7 @@ export function Services() {
             id="services-title"
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6"
           >
-            Como fazemos seu negócio{" "}
+            Como fazemos seu escritório{" "}
             <span className="block text-transparent bg-clip-text bg-linear-to-r from-electric-600 to-electric-400 dark:from-electric-400 dark:to-electric-200">
               crescer de verdade.
             </span>

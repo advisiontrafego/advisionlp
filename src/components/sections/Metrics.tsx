@@ -7,7 +7,7 @@ import { DollarSign, Megaphone, Zap, Handshake } from "lucide-react";
 const metrics = [
   {
     icon: DollarSign,
-    value: 2,
+    value: 10,
     suffix: "M+",
     prefix: "R$ ",
     label: "Faturamento Gerado",
@@ -15,7 +15,7 @@ const metrics = [
   },
   {
     icon: Megaphone,
-    value: 100,
+    value: 300,
     suffix: "K+",
     prefix: "R$ ",
     label: "Gerenciados em Ads",

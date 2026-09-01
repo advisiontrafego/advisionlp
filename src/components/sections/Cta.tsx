@@ -135,7 +135,8 @@ export default function CTAWithHorizontalMarquee() {
               id="cta-title"
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground px-4"
             >
-              Pronto para crescer com{" "}
+              Pronto para crescer <br />o seu escritório{" "}
+              <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-electric-600 to-electric-400 dark:from-electric-400 dark:to-electric-200">
                 método e estratégia?
               </span>
@@ -157,7 +158,7 @@ export default function CTAWithHorizontalMarquee() {
                   className="w-full sm:min-w-[280px] group relative px-8 py-6 min-h-[60px] bg-electric-500 text-white rounded-md font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-electric-600 touch-manipulation"
                   aria-label="Falar com especialista via WhatsApp"
                 >
-                  <span className="relative z-10">FALAR COM ESPECIALISTA</span>
+                  <span className="relative z-10">ENTRAR EM CONTATO</span>
                   <div
                     className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
                     aria-hidden="true"

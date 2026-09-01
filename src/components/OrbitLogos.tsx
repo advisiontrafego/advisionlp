@@ -284,12 +284,10 @@ export default function OrtbitLogos() {
 
     const updateScale = () => {
       const width = container.clientWidth;
-      // Mapeamos a largura do container para o scale equivalente
-      if (width < 360) setScale(0.75);
-      else if (width < 450) setScale(0.9);
-      else if (width < 520) setScale(1.05);
-      else if (width < 580) setScale(0.85);
-      else setScale(1);
+      // O orbit ocupa ~476px * scale (raio externo 210 + metade do icone).
+      // Dividir por 520 mantem ~8% de margem dentro da coluna, e a escala
+      // passa a acompanhar a largura real em vez de saltar entre degraus.
+      setScale(Math.min(1.2, Math.max(0.65, width / 520)));
     };
 
     const observer = new ResizeObserver(() => {
@@ -364,7 +362,7 @@ export default function OrtbitLogos() {
       ref={containerRef}
       className="w-full flex items-center justify-center"
     >
-      <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] aspect-square flex items-center justify-center">
+      <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-[700px] aspect-square flex items-center justify-center">
         <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-card border border-electric-100 dark:border-electric-500/50 rounded-full flex items-center justify-center z-10 relative shadow-2xl">
           <div className="relative z-10">
             <Logo className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16" />
