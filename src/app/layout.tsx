@@ -156,6 +156,35 @@ const organizationSchema = {
     bestRating: "5",
     worstRating: "1",
   },
+  founder: {
+    "@type": "Person",
+    name: "Gabriel Lemos",
+    jobTitle: "Fundador e Gestor",
+    image: "https://advisionagencia.com.br/team/gabriel.png",
+  },
+  employee: [
+    {
+      "@type": "Person",
+      name: "Gabriel Lemos",
+      jobTitle: "Fundador e Gestor",
+      image: "https://advisionagencia.com.br/team/gabriel.png",
+      worksFor: { "@id": "https://advisionagencia.com.br/#organization" },
+    },
+    {
+      "@type": "Person",
+      name: "Rafael Américo",
+      jobTitle: "Gestor de Tráfego",
+      image: "https://advisionagencia.com.br/team/rafael.jpeg",
+      worksFor: { "@id": "https://advisionagencia.com.br/#organization" },
+    },
+    {
+      "@type": "Person",
+      name: "Alexandre Garcia",
+      jobTitle: "Gestor e Desenvolvedor",
+      image: "https://advisionagencia.com.br/team/alexandre.png",
+      worksFor: { "@id": "https://advisionagencia.com.br/#organization" },
+    }
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+55-35-9237-7121",
@@ -369,6 +398,12 @@ const breadcrumbSchema = {
       position: 4,
       name: "Depoimentos Clientes Pouso Alegre",
       item: "https://advisionagencia.com.br#testimonials",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Time Advision",
+      item: "https://advisionagencia.com.br#team",
     },
   ],
 };

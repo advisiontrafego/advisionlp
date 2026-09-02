@@ -32,6 +32,13 @@ const Testimonials = dynamic(
     })),
   { ssr: true },
 );
+const TeamSection = dynamic(
+  () =>
+    import("@/components/sections/TeamSection").then((mod) => ({
+      default: mod.TeamSection,
+    })),
+  { ssr: true },
+);
 const CTAWithHorizontalMarquee = dynamic(
   () => import("@/components/sections/Cta"),
   { ssr: true },
@@ -54,6 +61,9 @@ export default function Home() {
       </div>
       <div className="cv-auto">
         <Testimonials />
+      </div>
+      <div className="cv-auto">
+        <TeamSection />
       </div>
       <div className="cv-auto">
         <CTAWithHorizontalMarquee />

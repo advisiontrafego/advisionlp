@@ -14,6 +14,26 @@ type Review = {
   affiliation: string;
   quote: string;
   LogoComponent: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  /** Ajuste fino por logo. 1 = tamanho cheio da caixa. Menor encolhe. */
+  scale?: number;
+};
+
+// Cada logo tem proporcao propria, entao os quase-quadrados ocupam a caixa
+// inteira e parecem maiores que os alongados. O scale corrige caso a caso.
+const ReviewLogo = ({ review }: { review: Review }) => {
+  const { LogoComponent, scale } = review;
+  const logo = (
+    <LogoComponent className="w-full h-full object-contain fill-current text-foreground" />
+  );
+  if (!scale || scale === 1) return logo;
+  return (
+    <span
+      className="flex h-full w-full items-center justify-center"
+      style={{ transform: `scale(${scale})` }}
+    >
+      {logo}
+    </span>
+  );
 };
 
 interface TestimonialSliderProps {
@@ -75,11 +95,13 @@ export const TestimonialSlider = ({
   const isExpanded = expandedQuotes[currentIndex] || false;
 
 
-  const thumbnailReviews = [
-    reviews[(currentIndex + 1) % reviews.length],
-    reviews[(currentIndex + 2) % reviews.length],
-    reviews[(currentIndex + 3) % reviews.length],
-  ];
+  // Ate 3 miniaturas, sempre as seguintes a ativa. O limite por
+  // reviews.length - 1 evita repetir o item ativo (ou repetir entre si)
+  // quando ha poucos depoimentos, o que colidiria as keys do React.
+  const thumbnailReviews = Array.from(
+    { length: Math.min(3, Math.max(0, reviews.length - 1)) },
+    (_, i) => reviews[(currentIndex + i + 1) % reviews.length],
+  );
 
 
   const imageVariants = {
@@ -132,7 +154,7 @@ export const TestimonialSlider = ({
                   className="overflow-hidden rounded-md w-10 h-12 opacity-70 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background p-1"
                   aria-label={`View review from ${review.name}`}
                 >
-                  <LogoComponent className="w-full h-full object-contain fill-current text-foreground" />
+                  <ReviewLogo review={review} />
                 </button>
               );
             })}
@@ -211,7 +233,7 @@ export const TestimonialSlider = ({
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0 flex items-center justify-center p-4 rounded-lg"
             >
-              <activeReview.LogoComponent className="w-full h-full object-contain fill-current text-foreground" />
+              <ReviewLogo review={activeReview} />
             </m.div>
           </AnimatePresence>
         </div>
@@ -247,7 +269,7 @@ export const TestimonialSlider = ({
                   className="overflow-hidden rounded-md w-20 h-24 opacity-70 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background p-2"
                   aria-label={`View review from ${review.name}`}
                 >
-                  <LogoComponent className="w-full h-full object-contain fill-current text-foreground" />
+                  <ReviewLogo review={review} />
                 </button>
               );
             })}
@@ -270,7 +292,7 @@ export const TestimonialSlider = ({
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0 flex items-center justify-center p-8 rounded-lg"
             >
-              <activeReview.LogoComponent className="w-full h-full object-contain fill-current text-foreground" />
+              <ReviewLogo review={activeReview} />
             </m.div>
           </AnimatePresence>
         </div>

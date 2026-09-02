@@ -2,14 +2,14 @@
 
 import { TestimonialSlider } from "@/components/testimonial-slider-1";
 import LogoDanieleADV from "@/components/logos/clientes/LogoDanieleADV";
-import LogoDikazza from "@/components/logos/clientes/LogoDikazza";
-import LogoDionisio from "@/components/logos/clientes/LogoDionisio";
-import LogoMarina from "@/components/logos/clientes/LogoMarina";
 import LogoMoreno from "@/components/logos/clientes/LogoMoreno";
-import LogoVltAdv from "@/components/logos/clientes/LogoVltAdv";
-import LogoVltImv from "@/components/logos/clientes/LogoVltImv";
-import LogoGrazi from "@/components/logos/clientes/LogoGrazi";
-import LogoThaTha from "@/components/logos/clientes/LogoThaTha";
+import LogoJaciaraSoares from "@/components/logos/clientes/LogoJaciaraSoares";
+import LogoJuliaBenati from "@/components/logos/clientes/LogoJuliaBenati";
+import LogoNathiaraBorges from "@/components/logos/clientes/LogoNathiaraBorges";
+import LogoPryscilaDroppa from "@/components/logos/clientes/LogoPryscilaDroppa";
+import LogoRamosValadao from "@/components/logos/clientes/LogoRamosValadao";
+import LogoSandraVilela from "@/components/logos/clientes/LogoSandraVilela";
+import LogoVilmarCrisanto from "@/components/logos/clientes/LogoVilmarCrisanto";
 
 const testimonials = [
   {
@@ -21,59 +21,69 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Dikazza Móveis",
-    affiliation: "Loja de Móveis",
+    name: "Jaciara Soares",
+    affiliation: "Advocacia e Consultoria Juridica",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Jaciara Soares
     quote: "No primeiro mês de parceria já vimos resultados expressivos. A Advision não só aumentou nosso Faturamento, mas também melhorou significativamente nosso Branding dentro da nossa Cidade.",
-    LogoComponent: LogoDikazza,
+    LogoComponent: LogoJaciaraSoares,
   },
   {
     id: 3,
-    name: "Dionísio Birnfeld",
-    affiliation: "Advocacia",
+    name: "Julia Benati",
+    affiliation: "Advocacia para empresários",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Julia Benati
     quote: "Finalmente entendemos de onde vêm nossos resultados. O rastreamento no WhatsApp é impecável e nos trouxe clareza.",
-    LogoComponent: LogoDionisio,
+    LogoComponent: LogoJuliaBenati,
+    scale: 0.75,
   },
   {
     id: 4,
-    name: "Mariana Faoro de Borba",
-    affiliation: "Advocacia",
+    name: "Nathiara Borges",
+    affiliation: "Advocacia da Saúde",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Nathiara Borges
     quote: "A Advision é muito profissional e comprometida com o resultado! Estou super satisfeita com o trabalho deles. Recomendo muito!",
-    LogoComponent: LogoMarina,
+    LogoComponent: LogoNathiaraBorges,
   },
   {
     id: 5,
     name: "Moreno & Santiago",
-    affiliation: "Advocacia",
+    affiliation: "Advocacia da Saúde",
     quote: "Investimento otimizado e resultados claros. A Advision entende nosso negócio e entrega performance de verdade.",
     LogoComponent: LogoMoreno,
   },
   {
     id: 6,
-    name: "VLT Advogados Associados",
-    affiliation: "Advocacia",
-    quote: "Escalamos com controle total. Sabemos exatamente quanto investir e quanto e de onde retorna.",
-    LogoComponent: LogoVltAdv,
+    name: "Pryscila Droppa",
+    affiliation: "Advocacia da Saúde",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Pryscila Droppa
+    quote: "Escalamos com controle total. Sabemos exatamente quanto investir e quanto e de onde retorna, são muito atenciosos e realmente preocupados com nossos resultados.",
+    LogoComponent: LogoPryscilaDroppa,
+    scale: 0.75,
   },
   {
     id: 7,
-    name: "VLT Imóveis",
-    affiliation: "Imobiliária",
+    name: "Ramos e Valadão",
+    affiliation: "Advocacia Empresarial",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Ramos e Valadão
     quote: "Do tráfego ao fechamento, tudo rastreado. A Advision nos deu visibilidade completa do nosso funil de vendas.",
-    LogoComponent: LogoVltImv,
+    LogoComponent: LogoRamosValadao,
+    scale: 0.75,
   },
   {
     id: 8,
-    name: "Grazi Boutique",
-    affiliation: "Loja de Roupas",
-    quote: "A Advision mudou nossa loja e Faturamento, são mais de 2 anos de Parceria.",
-    LogoComponent: LogoGrazi,
+    name: "Sandra Vilela",
+    affiliation: "Advocacia da Saúde",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Sandra Vilela
+    quote: "A Advision nos surprendeu muito, muito mais do que apenas gestão de tráfego, entregam o que prometem, referência em Salário Maternidade.",
+    LogoComponent: LogoSandraVilela,
   },
   {
     id: 9,
-    name: "THA e THA Lingeries",
-    affiliation: "Loja de Roupa Íntima",
+    name: "Vilmar Crisanto",
+    affiliation: "Advocacia da Saúde",
+    // TODO: PLACEHOLDER (texto de cliente anterior) - trocar pelo depoimento real de Vilmar Crisanto
     quote: "A Advision trouxe transparência, método e resultados que podemos comprovar mês a mês.",
-    LogoComponent: LogoThaTha,
+    LogoComponent: LogoVilmarCrisanto,
   },
 ];
 

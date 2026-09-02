@@ -15,6 +15,7 @@ const MENU_ITEMS = [
   { name: 'Serviços', href: '#services', scrollId: 'services' },
   { name: 'Método', href: '#how-it-works', scrollId: 'how-it-works' },
   { name: 'Depoimentos', href: '#testimonials', scrollId: 'testimonials' },
+  { name: 'Time', href: '#team', scrollId: 'team' },
   { name: 'Contato', href: '#contact', scrollId: 'contact' },
 ] as const
 
@@ -45,7 +46,7 @@ export const Header = () => {
           data-shrunk={isScrolled}
           className={cn(
             'mx-auto mt-2 max-w-6xl px-4 sm:px-6 lg:px-8 transition-all duration-300',
-            isScrolled && 'max-w-4xl rounded-2xl border-electric-500/20 bg-background/50 backdrop-blur-lg'
+            isScrolled && 'max-w-5xl rounded-2xl border-electric-500/20 bg-background/50 backdrop-blur-lg'
           )}
           // safe-area iOS
           style={{
@@ -53,7 +54,7 @@ export const Header = () => {
             paddingRight: 'max(env(safe-area-inset-right), 1rem)',
           }}
         >
-          <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+          <div className="relative flex flex-wrap lg:flex-nowrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
 
             <div className="flex w-full justify-between lg:w-auto">
               <Link
@@ -83,7 +84,7 @@ export const Header = () => {
 
 
             <div className="hidden lg:flex flex-1 items-center justify-center">
-              <ul className="flex gap-8 text-sm">
+              <ul className="flex gap-6 xl:gap-8 text-sm">
                 {MENU_ITEMS.map((item) => (
                   <li key={item.name}>
                     <Link
@@ -138,7 +139,7 @@ export const Header = () => {
               <div className="flex w-full flex-col items-center space-y-3 sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:space-y-0 lg:justify-end md:w-fit">
                 <ThemeSwitcher />
 
-                <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto min-w-[240px]">
+                <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto min-w-[240px] lg:min-w-0">
                   <button 
                     className="w-full group relative flex items-center justify-center gap-1 overflow-hidden rounded-xl border-[1.5px] border-transparent bg-electric-500 px-8 py-4 min-h-[48px] text-sm font-semibold text-white cursor-pointer transition-all duration-600ms ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-electric-600 active:scale-[0.95]"
                     aria-label="Falar com especialista via WhatsApp"

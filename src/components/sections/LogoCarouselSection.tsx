@@ -2,26 +2,26 @@
 
 import { LogoCarousel } from '../ui/logo-carousel';
 import LogoDanieleADV from '../logos/clientes/LogoDanieleADV';
-import LogoDikazza from '../logos/clientes/LogoDikazza';
-import LogoDionisio from '../logos/clientes/LogoDionisio';
-import LogoGrazi from '../logos/clientes/LogoGrazi';
-import LogoMarina from '../logos/clientes/LogoMarina';
+import LogoJaciaraSoares from '../logos/clientes/LogoJaciaraSoares';
+import LogoJuliaBenati from '../logos/clientes/LogoJuliaBenati';
 import LogoMoreno from '../logos/clientes/LogoMoreno';
-import LogoThaTha from '../logos/clientes/LogoThaTha';
-import LogoVltAdv from '../logos/clientes/LogoVltAdv';
-import LogoVltImv from '../logos/clientes/LogoVltImv';
+import LogoNathiaraBorges from '../logos/clientes/LogoNathiaraBorges';
+import LogoPryscilaDroppa from '../logos/clientes/LogoPryscilaDroppa';
+import LogoRamosValadao from '../logos/clientes/LogoRamosValadao';
+import LogoSandraVilela from '../logos/clientes/LogoSandraVilela';
+import LogoVilmarCrisanto from '../logos/clientes/LogoVilmarCrisanto';
 import { LogoFull } from '../logos/LogoFull';
 
 const allLogos = [
   { name: 'Daniele ADV', id: 1, img: LogoDanieleADV },
-  { name: 'Dikazza', id: 2, img: LogoDikazza },
-  { name: 'Dionisio', id: 3, img: LogoDionisio },
-  { name: 'Grazi', id: 4, img: LogoGrazi },
-  { name: 'Marina', id: 5, img: LogoMarina },
-  { name: 'Moreno', id: 6, img: LogoMoreno },
-  { name: 'ThaTha', id: 7, img: LogoThaTha },
-  { name: 'VLT ADV', id: 8, img: LogoVltAdv, scale: 0.8 },
-  { name: 'VLT IMV', id: 9, img: LogoVltImv },
+  { name: 'Moreno', id: 2, img: LogoMoreno },
+  { name: 'Jaciara Soares', id: 3, img: LogoJaciaraSoares },
+  { name: 'Julia Benati', id: 4, img: LogoJuliaBenati },
+  { name: 'Nathiara Borges', id: 5, img: LogoNathiaraBorges },
+  { name: 'Pryscila Droppa', id: 6, img: LogoPryscilaDroppa },
+  { name: 'Ramos e Valadao', id: 7, img: LogoRamosValadao },
+  { name: 'Sandra Vilela', id: 8, img: LogoSandraVilela },
+  { name: 'Vilmar Crisanto', id: 9, img: LogoVilmarCrisanto },
 ];
 
 export function LogoCarouselSection() {
