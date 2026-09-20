@@ -13,9 +13,7 @@ const services = [
     subtitle: "Seja encontrado por quem importa",
     description: (
       <>
-        <strong>Anúncios</strong> que <strong>atraem</strong> quem{" "}
-        <strong>realmente importa</strong>. Google, Meta, TikTok — cada
-        plataforma com estratégia própria.
+        Anúncios que atraem. <strong>Meta, Google, TikTok</strong> - Cada plataforma com estratégia própria.
       </>
     ),
     points: [
@@ -30,9 +28,7 @@ const services = [
     subtitle: "Tome decisões com Inteligência.",
     description: (
       <>
-        Sabemos de onde vem <strong>cada lead</strong> e{" "}
-        <strong>cada venda</strong>. Relatórios que{" "}
-        <strong>fazem sentido</strong>.
+          Sabemos de <strong>onde vem</strong> cada <strong>lead e cada venda</strong>.
       </>
     ),
     points: [
@@ -47,8 +43,7 @@ const services = [
     subtitle: "Do clique ao fechamento",
     description: (
       <>
-        <strong>Performance</strong> vai <strong>além do anúncio</strong>.
-        Trabalhamos do tráfego até a <strong>conversão final</strong>.
+        Performance vai <strong>além do anúncio</strong>.  
       </>
     ),
     points: [

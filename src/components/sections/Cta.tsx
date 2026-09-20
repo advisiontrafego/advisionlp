@@ -135,7 +135,7 @@ export default function CTAWithHorizontalMarquee() {
               id="cta-title"
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground px-4"
             >
-              Pronto para crescer <br />o seu escritório{" "}
+              Pronto para crescer <br />o seu escritório com{" "}
               <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-electric-600 to-electric-400 dark:from-electric-400 dark:to-electric-200">
                 método e estratégia?

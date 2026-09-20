@@ -1,26 +1,50 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { X } from 'lucide-react';
 
+// O aviso so aparece nas paginas legais, nunca na home.
+const CONSENT_PATHS = ['/privacidade', '/termos'];
+
+// localStorage lanca em aba privada ou com armazenamento bloqueado — que e
+// justamente o perfil de quem tende a cair nessas paginas.
+function readConsent() {
+  try {
+    return localStorage.getItem('cookie-consent');
+  } catch {
+    return null;
+  }
+}
+
+function writeConsent(value: string) {
+  try {
+    localStorage.setItem('cookie-consent', value);
+  } catch {
+    /* sem persistencia: o aviso volta na proxima visita */
+  }
+}
+
 export function CookieBanner() {
+  const pathname = usePathname();
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      setShowBanner(true);
+    if (!CONSENT_PATHS.includes(pathname)) {
+      setShowBanner(false);
+      return;
     }
-  }, []);
+    setShowBanner(!readConsent());
+  }, [pathname]);
 
   const acceptCookies = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    writeConsent('accepted');
     setShowBanner(false);
   };
 
   const rejectCookies = () => {
-    localStorage.setItem('cookie-consent', 'rejected');
+    writeConsent('rejected');
     setShowBanner(false);
   };
 

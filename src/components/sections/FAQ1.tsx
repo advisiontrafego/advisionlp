@@ -147,7 +147,7 @@ function FAQ1() {
 
   if (!mounted) {
     return (
-      <div className="relative min-h-screen w-full overflow-hidden transition-colors duration-700 bg-navy-950 text-neutral-100">
+      <div className="relative min-h-screen lg:min-h-0 w-full overflow-hidden transition-colors duration-700 bg-navy-950 text-neutral-100">
         <div
           className="absolute inset-0 z-0"
           style={{ background: palettes.dark.aurora }}
@@ -161,7 +161,7 @@ function FAQ1() {
         <section
           id="faq"
           aria-labelledby="faq-heading"
-          className="relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 faq1-fade"
+          className="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 xl:max-w-6xl xl:gap-16 xl:py-32 2xl:max-w-7xl faq1-fade"
         >
           <div className="faq1-intro faq1-intro--dark">
             <span className="faq1-intro__beam" aria-hidden="true" />
@@ -182,7 +182,7 @@ function FAQ1() {
               </p>
               <h1
                 id="faq-heading"
-                className="text-4xl font-semibold leading-tight md:text-5xl text-white"
+                className="text-4xl font-semibold leading-tight md:text-5xl xl:text-6xl text-white"
               >
                 Crescimento com clareza e método.
               </h1>
@@ -192,7 +192,7 @@ function FAQ1() {
               </p>
             </div>
           </header>
-          <ul className="space-y-4">
+          <ul className="grid gap-4 xl:grid-cols-2 xl:items-start">
             {faqs.map((item, index) => {
               const open = activeIndex === index;
               const panelId = `faq-panel-${index}`;
@@ -280,7 +280,7 @@ function FAQ1() {
 
   return (
     <div
-      className={`relative min-h-screen w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}
+      className={`relative min-h-screen lg:min-h-0 w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}
     >
       <div
         className="absolute top-0 left-0 right-0 h-18 bg-gradient-to-t from-transparent to-background backdrop-blur-sm z-20"
@@ -305,7 +305,7 @@ function FAQ1() {
         ref={sectionRef}
         id="faq"
         aria-labelledby="faq-heading"
-        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 ${
+        className={`relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 xl:max-w-6xl xl:gap-16 xl:py-32 2xl:max-w-7xl ${
           hasEntered ? "faq1-fade--ready" : "faq1-fade"
         }`}
       >
@@ -345,7 +345,7 @@ function FAQ1() {
             </p>
             <h1
               id="faq-heading"
-              className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}
+              className={`text-4xl font-semibold leading-tight md:text-5xl xl:text-6xl ${palette.heading}`}
             >
               Crescimento com clareza e método.
             </h1>
@@ -356,7 +356,7 @@ function FAQ1() {
           </div>
         </header>
 
-        <ul className="space-y-4">
+        <ul className="grid gap-4 xl:grid-cols-2 xl:items-start">
           {faqs.map((item, index) => {
             const open = activeIndex === index;
             const panelId = `faq-panel-${index}`;

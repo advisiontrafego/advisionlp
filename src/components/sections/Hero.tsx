@@ -13,7 +13,7 @@ const RotatingEarth = dynamic(() => import("@/components/OrbitLogos"), {
   ssr: false,
 });
 
-const TYPING_TEXTS = ["Método.", "Previsibilidade.", "Estratégia.", "Métricas."];
+const TYPING_TEXTS = ["Método.", "Previsibilidade.", "Estratégia."];
 
 export default function Hero() {
   return (
