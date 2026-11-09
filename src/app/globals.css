@@ -2,12 +2,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  /* Breakpoints extras para monitores grandes */
-  --breakpoint-3xl: 120rem; /* 1920px - Full HD */
-  --breakpoint-4xl: 160rem; /* 2560px - QHD / 4K com escala 150% */
-  --breakpoint-5xl: 240rem; /* 3840px - 4K nativo */
+/* Variantes extras para monitores grandes.
+   São @custom-variant (e não --breakpoint-* no @theme) para não alterar
+   o max-width da classe `container`, usada nas outras seções. */
+@custom-variant 3xl (@media (width >= 120rem)); /* 1920px - Full HD */
+@custom-variant 4xl (@media (width >= 160rem)); /* 2560px - QHD / 4K com escala 150% */
+@custom-variant 5xl (@media (width >= 240rem)); /* 3840px - 4K nativo */
 
+@theme inline {
   /* Paleta Midnight Navy */
   --color-navy-800: #12161c;
   --color-navy-700: #050f19;

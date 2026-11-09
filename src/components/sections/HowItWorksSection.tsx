@@ -76,7 +76,7 @@ export function HowItWorksSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
-                className="relative z-10 w-full max-w-150"
+                className="relative z-10 w-full max-w-150 lg:max-w-none"
             >
                 <HowItWorks 
                   badgeTexts={{
