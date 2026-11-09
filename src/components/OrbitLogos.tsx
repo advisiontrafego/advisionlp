@@ -66,7 +66,7 @@ const iconComponents: Record<
   escalabilidade: {
     component: () => (
       <div className="w-full h-full bg-linear-to-br from-electric-500 to-electric-600 rounded-full flex items-center justify-center">
-        <TrendingUp className="w-6 h-6 text-white" strokeWidth={2.5} />
+        <TrendingUp className="w-3/5 h-3/5 text-white" strokeWidth={2.5} />
       </div>
     ),
     color: "#3449EA",
@@ -74,7 +74,7 @@ const iconComponents: Record<
   organico: {
     component: () => (
       <div className="w-full h-full bg-linear-to-br from-electric-600 to-electric-700 rounded-full flex items-center justify-center">
-        <Globe className="w-6 h-6 text-white" strokeWidth={2.5} />
+        <Globe className="w-3/5 h-3/5 text-white" strokeWidth={2.5} />
       </div>
     ),
     color: "#1830E7",
@@ -285,9 +285,10 @@ export default function OrtbitLogos() {
     const updateScale = () => {
       const width = container.clientWidth;
       // O orbit ocupa ~476px * scale (raio externo 210 + metade do icone).
-      // Dividir por 520 mantem ~8% de margem dentro da coluna, e a escala
+      // Dividir por 520 mantem ~8% de margem dentro da caixa, e a escala
       // passa a acompanhar a largura real em vez de saltar entre degraus.
-      setScale(Math.min(1.2, Math.max(0.65, width / 520)));
+      // Teto alto para crescer junto em QHD/4K (a caixa já limita o tamanho).
+      setScale(Math.min(3.2, Math.max(0.65, width / 520)));
     };
 
     const observer = new ResizeObserver(() => {
@@ -358,14 +359,21 @@ export default function OrtbitLogos() {
   );
 
   return (
-    <main
-      ref={containerRef}
-      className="w-full flex items-center justify-center"
-    >
-      <div className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-[700px] aspect-square flex items-center justify-center">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-card border border-electric-100 dark:border-electric-500/50 rounded-full flex items-center justify-center z-10 relative shadow-2xl">
-          <div className="relative z-10">
-            <Logo className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16" />
+    <div className="w-full flex items-center justify-center">
+      {/* O ref fica na caixa quadrada: a escala segue o tamanho real dela.
+          No lg+ a caixa ocupa a coluna inteira (sem invadir o texto) e é
+          limitada pela altura da tela para caber abaixo do header. */}
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[calc(100svh-10rem)] aspect-square flex items-center justify-center"
+      >
+        {/* Logo central proporcional à escala da órbita */}
+        <div
+          className="bg-card border border-electric-100 dark:border-electric-500/50 rounded-full flex items-center justify-center z-10 relative shadow-2xl"
+          style={{ width: `${96 * scale}px`, height: `${96 * scale}px` }}
+        >
+          <div className="relative z-10 flex items-center justify-center w-2/3 h-2/3">
+            <Logo className="w-full h-full" />
           </div>
         </div>
 
@@ -382,6 +390,6 @@ export default function OrtbitLogos() {
           <OrbitingSkill key={config.id} ref={setSkillRef(i)} config={config} />
         ))}
       </div>
-    </main>
+    </div>
   );
 }
